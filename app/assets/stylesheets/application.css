@@ -13,3 +13,112 @@
  *= require_tree .
  *= require_self
  */
+
+body {font-family: 'Lato', sans-serif; background-color: #f0f0f0;}
+h1, h2, h3, h4 {font-family: 'Montserrat', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 700;}
+h1 {font-size: 64px;}
+h2 {font-size: 48px; text-align: center; color: #337ab7;}
+h3 {text-align: center;}
+img {width: 100%;}
+
+a {color: #337ab7;}
+	a:hover {color: #2e6da4; 
+	webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;}
+	
+.btn-primary {font-family: 'Montserrat', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: 700; text-transform: uppercase; padding: 10px 15px;  border: none;}
+	.btn-primary:hover {}
+
+
+/* Navbar */
+.navbar-inverse {background-color: transparent; background: transparent; background-image: none; border-bottom: none; color: #fff;}
+
+.navbar-inverse .navbar-brand {font-family: 'Montserrat', 'Helvetica Neue', Arial, Helvetica, sans-serif; text-transform: uppercase; color: #fff; font-weight: 700; border: 3px solid #fff; border: 3px solid rgba(255,255,255,0.5); padding: 3px 4px; margin-top: 10px; height: auto; /* border-radius */
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;}
+
+
+.navbar-collapse {border: none;}
+.navbar-collapse.in {border: none; background: #333; background: rgba(10,0,10,0.5) }
+
+
+/* Video Thing */
+
+#ipad-video{bottom:0;position:absolute;width:100%; z-index: 10; }
+video {display: inline-block; z-index: 10; }
+
+.hero {position: absolute; top: 0; height: 500px; width: 100%; background: #ccc url(img/video_still.jpg) top center no-repeat ; background-size: 100%;}
+
+.pitch {color: #fff; z-index: 110; display: block; padding-top: 0px; position: absolute; top: 100px; left: 0; margin-top: 100px; text-align: center; width: 100%;}
+
+
+	.pitch .btn-primary  {border: 2px solid #fff; border: 3px solid rgba(255,255,255,0.5); background: transparent; background: rgba(255,255,255,0.1);}
+		.pitch .btn-primary:hover {border: 2px solid #fff; border: 3px solid rgba(255,255,255,0.8); background: transparent; background: rgba(255,255,255,0.5);}
+
+/* Homepage Content */
+
+#below-video {padding-top: 520px;}
+.game {margin-top: 20px; background: #ccc; text-align: center; padding-top: 80px;  color: #ddd; height: 300px;}
+	.game a {color: #fff;}
+		.game a:hover {text-decoration: none;}
+	.game h3{ color: #fff; position: relative;  font-size: 36px;}
+	.game a img {width: auto; opacity: 0.5}
+		.game a img:hover {width: auto; opacity: 1}
+		
+.game-tower2 {background: url(img/tower2b.jpg) top center no-repeat; background-size: cover;}
+	.game-tower2:hover {background: url(img/monkey.gif) top center no-repeat; background-size: cover;}
+.game-zombie {background: url(img/zombie2.jpg) top center no-repeat; background-size: cover;}
+	.game-zombie:hover {background: url(img/monkey.gif) top center no-repeat; background-size: cover;}
+.game-zombie-arcade {background: url(img/zombie-arcade2.jpg) top center no-repeat; background-size: cover;}
+	.game-zombie-arcade:hover {background: url(img/monkey.gif) top center no-repeat; background-size: cover;}
+.game-tower0 {background: url(img/tower0.jpg) top center no-repeat; background-size: cover;}
+	.game-tower0:hover {background: url(img/monkey.gif) top center no-repeat; background-size: cover;}
+.game-tower1 {background: url(img/tower1.jpg) top center no-repeat; background-size: cover;}
+	.game-tower1:hover {background: url(img/monkey.gif) top center no-repeat; background-size: cover;}
+.game-nuts {background: url(img/nuts.jpg) top center no-repeat; background-size: cover;}
+	.game-nuts:hover {background: url(img/squirrels.gif) top center no-repeat; background-size: cover;}
+
+
+.about-us {padding-top: 60px; padding-bottom: 40px;}
+	.about-us h3 {padding-top: 20px;}
+
+/* Footer */
+#footer {margin-top: 0px; padding: 60px 0; background: #333 url(img/diamonds.png) top center repeat;; color: #ccc;}
+	#footer ul {list-style: none; padding-left: 0; }
+		#footer ul li {margin-left: 0;}
+
+.carousel {margin-top: 60px; margin-bottom: 0px}
+ .item {max-height: 500px;}
+
+
+/* Responsive Adjustments */
+@media (max-width: 920px) {
+	.hero {height: 400px;}
+	.pitch {margin-top: 30px;}
+	#below-video {padding-top: 420px;}
+	
+}
+
+@media (max-width: 720px) {
+	.hero {height: 300px;}
+	.pitch {margin-top: 0px; top: 80px;}
+	h1 {font-size: 48px; }
+	#below-video {padding-top: 320px;}	
+}
+
+@media (max-width: 760px) {
+	.navbar-header {border: none; background: #333; background: rgba(10,0,10,0.5) }
+	.navbar-inverse .navbar-nav>li>a {color: #fff; }
+	
+}
+
+@media (max-width: 480px) {
+	.hero {background-size: cover;  }
+	.hero video {display: none;}
+	.pitch {margin-top: 0; top: 40px;}
+	
+}
