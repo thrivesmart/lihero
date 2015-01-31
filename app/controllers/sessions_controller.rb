@@ -1,8 +1,9 @@
 class SessionsController < ApplicationController
   def create
+    logger.debug "OMNIAUTH: #{request.env['omniauth.auth'].to_json}"
     session[:current_user] = request.env['omniauth.auth']
     User.create_or_update_user_from_omniauth(request.env['omniauth.auth'])
-    redirect_to session[:after_auth_url] || '/'
+    redirect_to session[:after_auth_url] || home_url
   end
   
   def new_linkedin_auth
