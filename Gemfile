@@ -19,7 +19,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'omniauth'
 gem "omniauth-google-oauth2"
 gem "omniauth-github"
-gem 'omniauth-linkedin'
+gem 'omniauth-linkedin-oauth2'
 
 # Heroku to serve assets
 gem 'rails_12factor', group: :production
