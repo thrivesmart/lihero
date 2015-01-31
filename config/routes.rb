@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :org_user_privileges
+
+  resources :organizations
+
   get 'welcome/home'
 
   resources :users

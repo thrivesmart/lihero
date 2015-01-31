@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127010852) do
+ActiveRecord::Schema.define(version: 20150131230004) do
+
+  create_table "org_user_privileges", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.string   "privileges"
+    t.integer  "creator_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "org_user_privileges", ["creator_id"], name: "index_org_user_privileges_on_creator_id"
+  add_index "org_user_privileges", ["organization_id", "privileges"], name: "index_org_user_privileges_on_organization_id_and_privileges"
+  add_index "org_user_privileges", ["organization_id"], name: "index_org_user_privileges_on_organization_id"
+  add_index "org_user_privileges", ["privileges"], name: "index_org_user_privileges_on_privileges"
+  add_index "org_user_privileges", ["user_id", "privileges"], name: "index_org_user_privileges_on_user_id_and_privileges"
+  add_index "org_user_privileges", ["user_id"], name: "index_org_user_privileges_on_user_id"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "permalink"
+    t.string   "website"
+    t.integer  "creator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "organizations", ["creator_id"], name: "index_organizations_on_creator_id"
+  add_index "organizations", ["name"], name: "index_organizations_on_name"
+  add_index "organizations", ["permalink"], name: "index_organizations_on_permalink"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
