@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if auth_hash.blank?
       session[:after_auth_url] = request.url
       session[:current_user] = nil
-      redirect_to '/auth/github'
+      redirect_to '/auth/linkedin'
       return false
     end
     return true
