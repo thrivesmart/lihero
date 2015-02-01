@@ -10,6 +10,32 @@
 		<div class="pull-right">
 			<a href="<%= new_organization_path %>" class="btn btn-info">Create an Organization</a>
 		</div>
-		Organizations <%= authed_user.organizations.count %>
+		Organizations <span class="label label-default"><%= authed_user.organizations.count %></span>
 	</h2>
+	
+	<table class="table table-striped table-hover tablesorter" id="Organizations-table">
+		<thead>
+			<tr>
+				<th><span>Name</span></th>
+				<th><span>Members</span></th>
+				<th><span>Creator</span></th>
+				<th><span>Created</span></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% unless authed_user.organizations.any? %>
+			<tr id="empty-table">
+				<td class="bg-warning" colspan="2">No organizations created yet.</td>
+			</tr>
+			<% end %>
+			<% authed_user.organizations.each do |organization| %>
+			<tr class="linked-row" data-href="<%= organization_path(organization) %>">
+				<td><%= link_to organization.name, organization %></td>
+				<td><%= link_to organization.org_user_privileges.count, organization %></td>
+				<td><%= link_to organization.creator.full_name, organization %></td>
+				<td><%= link_to "#{distance_of_time_in_words_to_now organization.created_at} ago", organization %> </td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 </div>

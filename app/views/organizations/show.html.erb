@@ -17,11 +17,11 @@
 
 	<div class="row">
 		<label class="col-sm-3 text-right text-muted">Name</label>
-		<div class="col-sm-9"><%= @organization.name %></div>
+		<div class="col-sm-9"><strong><%= @organization.name %></strong></div>
 	</div>
 
 	<div class="row">
-		<label class="col-sm-3 text-right text-muted">Permalink</label>
+		<label class="col-sm-3 text-right text-muted">&nbsp;</label>
 		<div class="col-sm-9"><span class="text-muted"><%= organizations_url %>/</span><%= @organization.permalink %> (<%= link_to 'link', @organization %>)</div>
 	</div>
 
@@ -47,7 +47,7 @@
 			<div class="pull-right">
 				<a href="<%= new_organization_org_user_privilege_path(@organization) %>" class="btn btn-info">Add a Member</a>
 			</div>
-			Team Members <%= @organization.org_user_privileges.count %>
+			Team Members <span class="label label-default"><%= @organization.org_user_privileges.count %></span>
 			
 		</h2>
 	</div>

@@ -1,5 +1,4 @@
 
-
 <% content_for :page_title do %>
 Organizations - 
 <% end %>
@@ -7,31 +6,24 @@ Organizations -
 	<div class="page-header">
 		<h1>
 			<div class="pull-left">
-				<%= link_to "<span class=\"glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>".html_safe, "/", class: "btn btn-default", title: "Back" %>
+				<%= link_to "<span class=\"glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>".html_safe, home_path, class: "btn btn-default", title: "Back" %>
 				&nbsp;
 			</div>
-
 			<div class="pull-right">
 				<%= link_to "<span class=\"glyphicon glyphicon-plus-sign\" aria-hidden=\"true\"></span> New Organization".html_safe, [:new, :organization], class: "btn btn-success" %>
 			</div>
 			Listing Organizations
 		</h1>
 	</div>
-
 	<table class="table table-striped table-hover tablesorter" id="Organizations-table">
-
-
 		<thead>
 			<tr>
-    
 				<th><span>Name</span></th>
-				<th><span>Permalink</span></th>
-				<th><span>Website</span></th>
+				<th><span>Members</span></th>
 				<th><span>Creator</span></th>
-      
+				<th><span>Created</span></th>
 			</tr>
 		</thead>
-
 		<tbody>
 			<% unless @organizations.any? %>
 			<tr id="empty-table">
@@ -40,19 +32,12 @@ Organizations -
 			<% end %>
 			<% @organizations.each do |organization| %>
 			<tr class="linked-row" data-href="<%= organization_path(organization) %>">
-      
 				<td><%= link_to organization.name, organization %></td>
-				<td><%= link_to organization.permalink, organization %></td>
-				<td><%= link_to organization.website, organization %></td>
+				<td><%= link_to organization.org_user_privileges.count, organization %></td>
 				<td><%= link_to organization.creator.full_name, organization %></td>
-        
-        
-        
+				<td><%= link_to "#{distance_of_time_in_words_to_now organization.created_at} ago", organization %> </td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
-
 </div>
-
-
