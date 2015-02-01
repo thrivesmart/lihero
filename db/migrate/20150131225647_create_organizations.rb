@@ -8,6 +8,6 @@ class CreateOrganizations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :organizations, :users, column: :creator_id, primary_key: :user_id
+    add_foreign_key :organizations, :users, column: :creator_id, primary_key: :id
   end
 end
