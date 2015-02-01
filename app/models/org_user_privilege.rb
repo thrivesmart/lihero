@@ -9,7 +9,7 @@ class OrgUserPrivilege < ActiveRecord::Base
   attr_accessor :user_via_email
   
   validates :organization_id, presence: true, uniqueness: { scope: :user_id }
-  validates :user, presence: true
+  validates :user, presence: { message: '- no user account found with that email.  Please have your friend signup for free, first!' }
   validates :privileges, presence: true, inclusion: { in: VALID_PRIVILEGES, message: "%{value} setting is not valid." }
   validates :creator, presence: true
   

@@ -1,15 +1,15 @@
 <% content_for :page_title do %>
-Create Org User Privilege - 
+Add Team Member - <%= @organization.name %> -
 <% end %>
 <div class="container">
 <div class="page-header">
 <h1>
-New Org User Privilege
+Add a Team Member
 </h1>
 </div>
 
 <%= render 'form' %>
 
 <div class="clearfix"></div>
-<%= link_to "<span class=\"glyphicon glyphicon-ban-circle\" aria-hidden=\"true\"></span> Cancel".html_safe, org_user_privileges_path, class: "btn btn-default" %>
+<%= link_to "<span class=\"glyphicon glyphicon-ban-circle\" aria-hidden=\"true\"></span> Cancel".html_safe, organization_org_user_privileges_path(@organization), class: "btn btn-default" %>
 </div>

@@ -1,7 +1,7 @@
 <%= form_for([@org_user_privilege.organization, @org_user_privilege]) do |f| %>
 <% if @org_user_privilege.errors.any? %>
 <div id="error_explanation" class="alert alert-danger" role="alert">
-	<strong><%= pluralize(@org_user_privilege.errors.count, "error") %> prohibited this org_user_privilege from being saved:</strong>
+	<strong><%= pluralize(@org_user_privilege.errors.count, "error") %> prohibited this team member from being saved:</strong>
 
 	<ul>
 		<% @org_user_privilege.errors.full_messages.each do |message| %>
@@ -15,7 +15,7 @@
 	<div class="form-group<%= f.object.errors[:user_id].empty? ? "" : " has-error has-feedback" %>">
 		<%= f.label :user_via_email, 'Team Member\'s Email', { class: "control-label col-sm-2" } %>
 		<div class="col-sm-10">
-			<%= f.text_field :user_via_email, { class: "form-control" } %>
+			<%= f.text_field :user_via_email, { class: "form-control", type: 'email', required: 'true' } %>
 		</div>
 	</div>
 </div>
@@ -23,13 +23,12 @@
 	<div class="form-group<%= f.object.errors[:privileges].empty? ? "" : " has-error has-feedback" %>">
 		<%= f.label :privileges, { class: "control-label col-sm-2" } %>
 		<div class="col-sm-10">
-			<%= f.select :privileges, OrgUserPrivilege::PRIVILEGE_CODES.keys.map {|a| [ a.to_s.humanize, OrgUserPrivilege::PRIVILEGE_CODES[a] ] }, { prompt: 'Select Privilege' }, { class: "form-control" } %>
-			<%= f.text_field :privileges, { class: "form-control" } %>
+			<%= f.select :privileges, OrgUserPrivilege::PRIVILEGE_CODES.keys.map {|a| [ a.to_s.gsub('_',' & ').titlecase, OrgUserPrivilege::PRIVILEGE_CODES[a] ] }, { prompt: 'Select Access Level on Organization' }, { class: "form-control" } %>
 		</div>
 	</div>
 </div>
 
 <div class="actions text-center">
-	<%= f.submit class: "btn btn-success" %>
+	<%= f.submit "#{f.object.new_record? ? 'Add' : 'Update'} Member", class: "btn btn-success" %>
 </div>
 <% end %>

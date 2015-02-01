@@ -31,10 +31,15 @@
 	</div>
 
 	<div class="row">
-		<label class="col-sm-3 text-right text-muted">Creator</label>
-		<div class="col-sm-9"><%= @organization.creator.full_name %></div>
+		<label class="col-sm-3 text-right text-muted">Created</label>
+		<div class="col-sm-9"><%= distance_of_time_in_words_to_now @organization.created_at %> ago</div>
 	</div>
 
+	<div class="row">
+		<label class="col-sm-3 text-right text-muted">Created By</label>
+		<div class="col-sm-9"><%= @organization.creator.full_name %></div>
+	</div>
+	
 	<hr>
 	
 	<div>
