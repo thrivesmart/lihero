@@ -10,7 +10,7 @@ class CreateOrgUserPrivileges < ActiveRecord::Migration
     end
     add_foreign_key :org_user_privileges, :organizations
     add_foreign_key :org_user_privileges, :users
-    add_foreign_key :org_user_privileges, :creators
+    add_foreign_key :org_user_privileges, :users, column: :creator_id, primary_key: :id
     add_index :org_user_privileges, [:user_id, :privileges]
     add_index :org_user_privileges, [:organization_id, :privileges]
   end
