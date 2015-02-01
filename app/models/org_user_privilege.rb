@@ -6,10 +6,19 @@ class OrgUserPrivilege < ActiveRecord::Base
   belongs_to :user
   belongs_to :creator, class_name: 'User' # Inviter of this person to this org
   
+  attr_accessor :user_via_email
+  
   validates :organization_id, presence: true, uniqueness: { scope: :user_id }
   validates :user, presence: true
   validates :privileges, presence: true, inclusion: { in: VALID_PRIVILEGES, message: "%{value} setting is not valid." }
   validates :creator, presence: true
+  
+  before_validation :set_user_via_email
+  
+  def set_user_via_email
+    self.user = User.find_by_email(self.user_via_email)
+  end
+  
   
   # Can read only in this org, and not do anything.
   def read?
