@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
-  has_many :org_user_privileges, dependent: :destroy
-  has_many :users, through: :org_user_privileges
+  has_many :memberships, dependent: :destroy
+  has_many :users, through: :memberships
   
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :permalink, presence: true, uniqueness: { case_sensitive: false }
@@ -9,16 +9,16 @@ class Organization < ActiveRecord::Base
   
   before_validation :autofill_permalink_if_blank
   
-  after_create :create_default_org_user_privilege
+  after_create :create_default_membership
   
   def to_param
     self.permalink
   end
   
-  def create_default_org_user_privilege
-    self.org_user_privileges.create(
+  def create_default_membership
+    self.memberships.create!(
       user: self.creator,
-      privileges: OrgUserPrivilege::PRIVILEGE_CODES[:read_write_execute],
+      privileges: Membership::PRIVILEGE_CODES[:read_write_execute],
       creator: self.creator
     )
   end

@@ -1,0 +1,51 @@
+<% content_for :page_title do %>
+Memberships - 
+<% end %>
+<div class="container">
+	<div class="page-header">
+		<h1>
+			<div class="pull-left">
+				<%= link_to "<span class=\"glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>".html_safe, @organization, class: "btn btn-default", title: "Back" %>
+				&nbsp;
+			</div>
+
+			<div class="pull-right">
+				<%= link_to "<span class=\"glyphicon glyphicon-plus-sign\" aria-hidden=\"true\"></span> New Membership".html_safe, [:new, @organization, :membership], class: "btn btn-success" %>
+			</div>
+			Listing Memberships
+		</h1>
+	</div>
+
+	<table class="table table-striped table-hover tablesorter" id="Memberships-table">
+
+		<thead>
+			<tr>
+				<th><span>User</span></th>
+				<th><span>Email</span></th>
+				<th><span>Privileges</span></th>
+				<th><span>Added</span></th>
+				<th><span>By</span></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% unless @memberships.any? %>
+			<tr id="empty-table">
+				<td class="bg-warning" colspan="2">No memberships created yet.</td>
+			</tr>
+			<% end %>
+			<% @memberships.each do |membership| %>
+			<tr class="linked-row" data-href="<%= membership_path(membership) %>">
+				<td><%= link_to membership.user.full_name, [membership.organization, membership] %></td>
+				<td><%= link_to membership.user.email, [membership.organization, membership] %></td>
+				<td><%= link_to membership.privileges, [membership.organization, membership] %></td>
+				<td><%= link_to "#{distance_of_time_in_words_to_now membership.created_at} ago", [membership.organization, membership] %> </td>
+				<td><%= link_to membership.creator.full_name, [membership.organization, membership] %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+
+</div>
+

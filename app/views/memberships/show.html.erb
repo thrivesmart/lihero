@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+Membership Details - 
+<% end %>
+<div class="container">
+	<div class="page-header">
+		<h1>
+			<div class="pull-left">
+				<%= link_to "<span class=\"glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>".html_safe, organization_memberships_path(@organization), class: "btn btn-default", title: "Back to memberships" %>
+				&nbsp;
+			</div>
+			<div class="pull-right">
+				<%= link_to "<span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit".html_safe, edit_organization_membership_path(@membership.organization, @membership), class: "btn btn-warning" %>
+			</div>
+			Membership Details
+		</h1>
+	</div>
+
+	<div class="row">
+		<label class="col-sm-3 text-right text-muted">Who</label>
+		<div class="col-sm-9"><%= @membership.user.full_name %></div>
+	</div>
+
+	<div class="row">
+		<label class="col-sm-3 text-right text-muted">Email</label>
+		<div class="col-sm-9"><%= link_to "mailto:#{@membership.user.email}", @membership.user.email %></div>
+	</div>
+
+	<div class="row">
+		<label class="col-sm-3 text-right text-muted">Privileges</label>
+		<div class="col-sm-9"><%= @membership.privileges %></div>
+	</div>
+
+
+	<div class="row">
+		<label class="col-sm-3 text-right text-muted">Member Since</label>
+		<div class="col-sm-9"><%= distance_of_time_in_words_to_now @membership.created_at %> ago</div>
+	</div>
+	<div class="row">
+		<label class="col-sm-3 text-right text-muted">Added By</label>
+		<div class="col-sm-9"><%= @membership.creator.full_name %></div>
+	</div>
+
+</div>
+

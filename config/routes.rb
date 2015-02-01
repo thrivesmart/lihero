@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-
   resources :organizations do
-    resources :org_user_privileges
+    resources :memberships
   end
 
   resources :users

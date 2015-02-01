@@ -45,9 +45,9 @@
 	<div>
 		<h2>
 			<div class="pull-right">
-				<a href="<%= new_organization_org_user_privilege_path(@organization) %>" class="btn btn-info">Add a Member</a>
+				<a href="<%= new_organization_membership_path(@organization) %>" class="btn btn-info">Add a Member</a>
 			</div>
-			Team Members <span class="label label-default"><%= @organization.org_user_privileges.count %></span>
+			Team Members <span class="label label-default"><%= @organization.memberships.count %></span>
 			
 		</h2>
 	</div>

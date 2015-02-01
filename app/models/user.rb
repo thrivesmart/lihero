@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :org_user_privileges
-  has_many :organizations, through: :org_user_privileges
+  has_many :memberships
+  has_many :organizations, through: :memberships
   has_many :created_organizations, class_name: 'Organization', foreign_key: 'creator_id'
-  has_many :created_org_user_privileges, class_name: 'OrgUserPrivilege', foreign_key: 'creator_id'
+  has_many :created_memberships, class_name: 'Membership', foreign_key: 'creator_id'
   
   def to_param
     self.linkedinid

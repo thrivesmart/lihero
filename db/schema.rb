@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131230004) do
+ActiveRecord::Schema.define(version: 20150201163712) do
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.string   "privileges"
+    t.integer  "creator_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "memberships", ["creator_id"], name: "index_memberships_on_creator_id"
+  add_index "memberships", ["organization_id", "privileges"], name: "index_memberships_on_organization_id_and_privileges"
+  add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id"
+  add_index "memberships", ["privileges"], name: "index_memberships_on_privileges"
+  add_index "memberships", ["user_id", "privileges"], name: "index_memberships_on_user_id_and_privileges"
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
 
   create_table "org_user_privileges", force: :cascade do |t|
     t.integer  "organization_id"
