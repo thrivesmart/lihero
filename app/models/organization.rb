@@ -27,7 +27,7 @@ class Organization < ActiveRecord::Base
     # Bypass if permalink is already set
     return true unless self.permalink.blank?
     
-    self.permalink = self.class.cleaned_deduped_permalink(self.title)
+    self.permalink = self.class.cleaned_deduped_permalink(self.name)
   end
   
   

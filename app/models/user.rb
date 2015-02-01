@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :org_user_privileges
+  has_many :organizations, through: :org_user_privileges
   has_many :created_organizations, class_name: 'Organization', foreign_key: 'creator_id'
   has_many :created_org_user_privileges, class_name: 'OrgUserPrivilege', foreign_key: 'creator_id'
   
@@ -23,5 +24,9 @@ class User < ActiveRecord::Base
       )
     end
     existing_user
+  end
+  
+  def full_name
+    "#{self.first_name}#{self.middle_name.blank? ? '' : ' '+self.middle_name} #{self.last_name}"
   end
 end

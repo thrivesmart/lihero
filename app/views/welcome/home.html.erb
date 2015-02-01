@@ -4,3 +4,12 @@
 		<h1>Welcome, <%= authed_user.first_name %>.</h1>
 	</div>
 </div>
+
+<div class="container">
+	<h2>
+		<div class="pull-right">
+			<a href="<%= new_organization_path %>" class="btn btn-info">Create an Organization</a>
+		</div>
+		Organizations <%= authed_user.organizations.count %>
+	</h2>
+</div>
