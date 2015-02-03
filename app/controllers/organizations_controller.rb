@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_filter :enforce_auth
-  before_filter :set_authed_user_org_user_privilege, only: [:show, :edit, :update, :destroy]
+  before_filter :set_authed_user_membership, only: [:show, :edit, :update, :destroy]
   before_filter :enforce_can_read, only: [:show]
   before_filter :enforce_can_write, only: [:edit, :update]
   before_filter :enforce_can_execute, only: [:destroy]
@@ -73,11 +73,11 @@ class OrganizationsController < ApplicationController
       raise ActiveRecord::RecordNotFound unless @organization
     end
 
-    def set_authed_user_org_user_privilege
-      @set_authed_user_org_user_privilege = @organization.org_user_privileges.where(user_id: authed_user.id).first
-      raise ActiveRecord::RecordNotFound unless @set_authed_user_org_user_privilege
+    def set_authed_user_membership
+      @set_authed_user_membership = @organization.memberships.where(user_id: authed_user.id).first
+      raise ActiveRecord::RecordNotFound unless @set_authed_user_membership
     end
-    
+  
     def enforce_can_read
       if !@set_authed_user_org_user_privilege.read?
         render :text => "Sorry, you aren't authorized to access this page.", :status => :unauthorized
