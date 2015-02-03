@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+
+  resources :lists
+
   resources :organizations do
     resources :memberships
+    resources :lists
   end
 
   resources :users
