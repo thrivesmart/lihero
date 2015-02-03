@@ -79,7 +79,7 @@ class OrganizationsController < ApplicationController
     end
   
     def enforce_can_read
-      if !@set_authed_user_org_user_privilege.read?
+      if !@set_authed_user_membership.read?
         render :text => "Sorry, you aren't authorized to access this page.", :status => :unauthorized
         return false
       else
@@ -88,7 +88,7 @@ class OrganizationsController < ApplicationController
     end
     
     def enforce_can_write
-      if !@set_authed_user_org_user_privilege.write?
+      if !@set_authed_user_membership.write?
         render :text => "Sorry, you aren't authorized to access this page.", :status => :unauthorized
         return false
       else
@@ -97,7 +97,7 @@ class OrganizationsController < ApplicationController
     end
     
     def enforce_can_execute
-      if !@set_authed_user_org_user_privilege.execute?
+      if !@set_authed_user_membership.execute?
         render :text => "Sorry, you aren't authorized to access this page.", :status => :unauthorized
         return false
       else
