@@ -16,6 +16,7 @@ class Membership < ActiveRecord::Base
   before_validation :set_user_via_email
   
   def set_user_via_email
+    return true unless self.user.nil?
     self.user = User.find_by_email(self.user_via_email)
   end
   
