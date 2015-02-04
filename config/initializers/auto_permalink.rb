@@ -3,7 +3,7 @@ module AutoPermalink
   # Usage:
   # def autofill_permalink_if_blank
   #   return true unless self.permalink.blank? # Bypass if permalink is already set
-  #   self.permalink = AutoPermalink::cleaned_deduped_permalink(self, self.name)
+  #   self.permalink = AutoPermalink::cleaned_deduped_permalink(self.class, self.name)
   # end
   
   # Autofix duplication of permalinks

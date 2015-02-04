@@ -19,6 +19,7 @@ Organizations -
 		<thead>
 			<tr>
 				<th><span>Name</span></th>
+				<th><span>Lists</span></th>
 				<th><span>Members</span></th>
 				<th><span>Creator</span></th>
 				<th><span>Created</span></th>
@@ -33,6 +34,7 @@ Organizations -
 			<% @organizations.each do |organization| %>
 			<tr class="linked-row" data-href="<%= organization_path(organization) %>">
 				<td><%= link_to organization.name, organization %></td>
+				<td><%= link_to organization.lists.count, organization %></td>
 				<td><%= link_to organization.memberships.count, organization %></td>
 				<td><%= link_to organization.creator.full_name, organization %></td>
 				<td><%= link_to "#{distance_of_time_in_words_to_now organization.created_at} ago", organization %> </td>

@@ -39,8 +39,8 @@ Lists -
 			<tr class="linked-row" data-href="<%= organization_list_path(list.organization, list) %>">
 				<td><% unless list.picurl.blank? %><%= link_to image_tag(list.picurl).html_safe, [list.organization, list] %><% end %></td>
 				<td><%= link_to list.name, [list.organization, list] %></td>
-				<td><%= link_to list.description, [list.organization, list] %></td>
-				<td><%= link_to "#{distance_of_time_in_words_to_now membership.created_at} ago", [list.organization, list] %> </td>
+				<td><%= link_to list.description.blank? ? '[none]' : list.description, [list.organization, list] %></td>
+				<td><%= link_to "#{distance_of_time_in_words_to_now list.created_at} ago", [list.organization, list] %> </td>
 				<td><%= link_to list.creator.full_name, [list.organization, list] %></td>
 			</tr>
 			<% end %>
