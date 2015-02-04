@@ -1,6 +1,7 @@
 class Organization < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
   has_many :memberships, dependent: :destroy
+  has_many :lists, dependent: :destroy
   has_many :users, through: :memberships
   
   validates :name, presence: true, uniqueness: { case_sensitive: false }

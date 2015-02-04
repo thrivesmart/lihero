@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201163712) do
+ActiveRecord::Schema.define(version: 20150203162412) do
+
+  create_table "lists", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.string   "permalink"
+    t.string   "description"
+    t.string   "picurl"
+    t.integer  "creator_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "lists", ["creator_id"], name: "index_lists_on_creator_id"
+  add_index "lists", ["name"], name: "index_lists_on_name"
+  add_index "lists", ["organization_id", "permalink"], name: "index_lists_on_organization_id_and_permalink"
+  add_index "lists", ["organization_id"], name: "index_lists_on_organization_id"
+  add_index "lists", ["permalink"], name: "index_lists_on_permalink"
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "organization_id"

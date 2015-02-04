@@ -6,8 +6,6 @@ class List < ActiveRecord::Base
   validates :organization, presence: true
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :organization_id }
   validates :permalink, presence: true, uniqueness: { case_sensitive: false }
-  validates :description
-  validates :picurl
   validates :creator, presence: true
   
   before_validation :autofill_permalink_if_blank
