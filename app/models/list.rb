@@ -2,6 +2,7 @@ class List < ActiveRecord::Base
   belongs_to :organization
   belongs_to :creator, class_name: 'User' # Creator of this list
   
+  has_many :leads, dependent: :destroy
   
   validates :organization, presence: true
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :organization_id }

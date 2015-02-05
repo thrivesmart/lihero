@@ -43,6 +43,16 @@ List Details -
 		<label class="col-sm-3 text-right text-muted">Added By</label>
 		<div class="col-sm-9"><%= @list.creator.full_name %></div>
 	</div>
+	
+	
+	<div>
+		<h2>
+			<div class="pull-right">
+				<a href="<%= new_organization_list_lead_path(@list.organization, @list) %>" class="btn btn-info">Add a Lead</a>
+			</div>
+			<%= link_to 'Leads', organization_list_leads_path(@list.organization, @list) %> <span class="label label-default"><%= @list.leads.count %></span>
+		</h2>
+	</div>
 
 </div>
 

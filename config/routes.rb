@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resources :organizations do
     resources :memberships
-    resources :lists
+    resources :lists do
+      resources :leads
+    end
   end
 
   resources :users

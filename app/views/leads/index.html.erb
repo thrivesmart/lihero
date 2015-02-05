@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<% content_for :page_title do %>
+Leads - 
+<% end %>
+<div class="container">
+	<div class="page-header">
+		<h1>
+			<div class="pull-left">
+				<%= link_to "<span class=\"glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>".html_safe, [@list.organization, @list], class: "btn btn-default", title: "Back" %>
+				&nbsp;
+			</div>
+
+			<div class="pull-right">
+				<%= link_to "<span class=\"glyphicon glyphicon-plus-sign\" aria-hidden=\"true\"></span> New Lead".html_safe, [:new, @list.organization, @list, :lead], class: "btn btn-success" %>
+			</div>
+			Listing Leads
+		</h1>
+	</div>
+
+	<table class="table table-striped table-hover tablesorter" id="Leads-table">
+
+
+		<thead>
+			<tr>
+    
+				<th><span>List</span></th>
+				<th><span>Creator</span></th>
+				<th><span>Linkedinid</span></th>
+				<th><span>Kind</span></th>
+				<th><span>Archived at</span></th>
+				<th><span>Name</span></th>
+				<th><span>Email</span></th>
+				<th><span>Phone</span></th>
+				<th><span>Picurl</span></th>
+				<th><span>Details</span></th>
+				<th><span>Notes</span></th>
+				<th><span>History</span></th>
+      
+			</tr>
+		</thead>
+
+		<tbody>
+			<% unless @leads.any? %>
+			<tr id="empty-table">
+				<td class="bg-warning" colspan="2">No leads created yet.</td>
+			</tr>
+			<% end %>
+			<% @leads.each do |lead| %>
+			<tr class="linked-row" data-href="<%= organization_list_lead_path(lead.list.organization, lead.list, lead) %>">
+      
+				<td><%= link_to lead.list, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.creator, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.linkedinid, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.kind, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.archived_at, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.name, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.email, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.phone, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.picurl, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.details, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.notes, [lead.list.organization, lead.list, lead] %></td>
+				<td><%= link_to lead.history, [lead.list.organization, lead.list, lead] %></td>
+        
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+
+
+

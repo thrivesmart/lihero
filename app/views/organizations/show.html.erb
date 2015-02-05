@@ -48,7 +48,6 @@
 				<a href="<%= new_organization_membership_path(@organization) %>" class="btn btn-info">Add a Member</a>
 			</div>
 			<%= link_to 'Team Members', organization_memberships_path(@organization) %> <span class="label label-default"><%= @organization.memberships.count %></span>
-			
 		</h2>
 	</div>
 	
@@ -58,7 +57,6 @@
 				<a href="<%= new_organization_list_path(@organization) %>" class="btn btn-info">Add a List</a>
 			</div>
 			<%= link_to 'Lists', organization_lists_path(@organization) %> <span class="label label-default"><%= @organization.lists.count %></span>
-			
 		</h2>
 	</div>
 </div>

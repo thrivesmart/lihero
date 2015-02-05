@@ -1,0 +1,82 @@
+<%= form_for([@lead.list.organization, @lead.list, @lead]) do |f| %>
+<% if @lead.errors.any? %>
+<div id="error_explanation" class="alert alert-danger" role="alert">
+	<strong><%= pluralize(@lead.errors.count, "error") %> prohibited this lead from being saved:</strong>
+
+	<ul>
+		<% @lead.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+
+<% if f.object.new_record? %>
+<%= f.hidden_field :linkedinid %>
+<%= f.hidden_field :kind %>
+<%= f.hidden_field :details %>
+<%= f.hidden_field :picurl %>
+<div class="row">
+	<div class="form-group<%= f.object.errors[:name].empty? ? "" : " has-error has-feedback" %>">
+		<%= f.label :search_query, 'Search', { class: "control-label col-sm-2" } %>
+		<div class="col-sm-10">
+			<%= f.text_field :search_query, { class: "form-control title-control", autofocus: 'autofocus', placeholder: "Person or Company Name", type: 'search' } %>
+		</div>
+	</div>
+</div>
+<% end %>
+
+<% if f.object.new_record? %>
+<%= f.hidden_field :name %>
+<% else %>
+<div class="row">
+	<div class="form-group<%= f.object.errors[:name].empty? ? "" : " has-error has-feedback" %>">
+		<%= f.label :name, { class: "control-label col-sm-2" } %>
+		<div class="col-sm-10">
+			<%= f.text_field :name, { class: "form-control" } %>
+		</div>
+	</div>
+</div>
+<% end %>
+
+<% if !f.object.new_record? %>
+<div class="row">
+	<div class="form-group<%= f.object.errors[:email].empty? ? "" : " has-error has-feedback" %>">
+		<%= f.label :email, { class: "control-label col-sm-2" } %>
+		<div class="col-sm-10">
+			<%= f.text_field :email, { class: "form-control", type: 'email' } %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group<%= f.object.errors[:phone].empty? ? "" : " has-error has-feedback" %>">
+		<%= f.label :phone, { class: "control-label col-sm-2" } %>
+		<div class="col-sm-10">
+			<%= f.text_field :phone, { class: "form-control", type: 'tel' } %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group<%= f.object.errors[:archived_at].empty? ? "" : " has-error has-feedback" %>">
+		<%= f.label :archived_at, { class: "control-label col-sm-2" } %>
+		<div class="col-sm-10">
+			<%= f.datetime_select :archived_at, include_blank: true %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="form-group<%= f.object.errors[:notes].empty? ? "" : " has-error has-feedback" %>">
+		<%= f.label :notes, { class: "control-label col-sm-2" } %>
+		<div class="col-sm-10">
+			<%= f.text_area :notes %>
+		</div>
+	</div>
+</div>
+<% end %>
+
+<div class="actions text-center">
+	<%= f.submit class: "btn btn-success" %>
+</div>
+<% end %>
