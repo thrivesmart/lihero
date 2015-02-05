@@ -21,6 +21,9 @@ gem "omniauth-google-oauth2"
 gem "omniauth-github"
 gem 'omniauth-linkedin-oauth2'
 
+# Interact with LI
+gem 'linkedin'
+
 # Heroku to serve assets
 gem 'rails_12factor', group: :production
 
