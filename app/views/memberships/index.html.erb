@@ -35,7 +35,7 @@ Memberships -
 			</tr>
 			<% end %>
 			<% @memberships.each do |membership| %>
-			<tr class="linked-row" data-href="<%= membership_path(membership) %>">
+			<tr class="linked-row" data-href="<%= organization_membership_path(membership.organization,membership) %>">
 				<td><%= link_to membership.user.full_name, [membership.organization, membership] %></td>
 				<td><%= link_to membership.user.email, [membership.organization, membership] %></td>
 				<td><%= link_to membership.privileges, [membership.organization, membership] %></td>
