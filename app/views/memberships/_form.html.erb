@@ -24,7 +24,7 @@
 	<div class="form-group<%= f.object.errors[:privileges].empty? ? "" : " has-error has-feedback" %>">
 		<%= f.label :privileges, { class: "control-label col-sm-2" } %>
 		<div class="col-sm-10">
-			<%= f.select :privileges, OrgUserPrivilege::PRIVILEGE_CODES.keys.map {|a| [ a.to_s.gsub('_',' & ').titlecase, Membership::PRIVILEGE_CODES[a] ] }, { prompt: '-Select Access Level to Organization-' }, { class: "form-control" } %>
+			<%= f.select :privileges, Membership::PRIVILEGE_CODES.keys.map {|a| [ a.to_s.gsub('_',' & ').titlecase, Membership::PRIVILEGE_CODES[a] ] }, { prompt: '-Select Access Level to Organization-' }, { class: "form-control" } %>
 		</div>
 	</div>
 </div>
