@@ -23,6 +23,7 @@ gem 'omniauth-linkedin-oauth2'
 
 # Interact with LI
 gem 'linkedin'
+gem 'aws-sdk'
 
 # Heroku to serve assets
 gem 'rails_12factor', group: :production
