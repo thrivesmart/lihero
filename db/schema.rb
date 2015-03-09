@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205032442) do
+ActiveRecord::Schema.define(version: 20150309003839) do
 
   create_table "leads", force: :cascade do |t|
     t.integer  "list_id"
@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(version: 20150205032442) do
   add_index "memberships", ["privileges"], name: "index_memberships_on_privileges"
   add_index "memberships", ["user_id", "privileges"], name: "index_memberships_on_user_id_and_privileges"
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
+
+  create_table "oauths", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "account"
+    t.string   "kind"
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "oauths", ["user_id"], name: "index_oauths_on_user_id"
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
