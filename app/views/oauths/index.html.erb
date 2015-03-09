@@ -1,0 +1,49 @@
+<% content_for :page_title do %>
+Oauths - 
+<% end %>
+<div class="container">
+  <div class="page-header">
+    <h1>
+      <div class="pull-left">
+        <%= link_to "<span class=\"glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>".html_safe, "/", class: "btn btn-default", title: "Back" %>
+        &nbsp;
+      </div>
+
+      <div class="pull-right">
+        <%= link_to "<span class=\"glyphicon glyphicon-plus-sign\" aria-hidden=\"true\"></span> New Oauth".html_safe, [:new, authed_user, :oauth], class: "btn btn-success" %>
+      </div>
+      Listing OAuth Tokens
+    </h1>
+  </div>
+
+  <table class="table table-striped table-hover tablesorter" id="Oauths-table">
+
+
+    <thead>
+      <tr>
+        <th><span>Kind</span></th>
+        <th><span>Account</span></th>
+        <th><span>Token</span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% unless @oauths.any? %>
+      <tr id="empty-table">
+        <td class="bg-warning" colspan="2">No OAuth Tokens created yet.</td>
+      </tr>
+      <% end %>
+      <% @oauths.each do |oauth| %>
+      <tr class="linked-row" data-href="<%= user_oauth_path(oauth.user, oauth) %>">
+
+        <td><%= link_to oauth.kind,    [oauth.user, oauth] %></td>
+        <td><%= link_to oauth.account, [oauth.user, oauth] %></td>
+        <td><%= link_to oauth.token,   [oauth.user, oauth] %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+

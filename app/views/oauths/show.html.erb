@@ -1,0 +1,32 @@
+<% content_for :page_title do %>
+OAuth Token Details - 
+<% end %>
+<div class="container">
+  <div class="page-header">
+    <h1>
+      <div class="pull-left">
+        <%= link_to "<span class=\"glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>".html_safe, oauths_path, class: "btn btn-default", title: "Back to oauths" %>
+        &nbsp;
+      </div>
+      OAuth Token Details
+    </h1>
+  </div>
+
+
+  <div class="row">
+    <label class="col-sm-3 text-right text-muted">Account</label>
+    <div class="col-sm-9"><%= @oauth.account %></div>
+  </div>
+
+  <div class="row">
+    <label class="col-sm-3 text-right text-muted">Kind</label>
+    <div class="col-sm-9"><%= @oauth.kind %></div>
+  </div>
+
+  <div class="row">
+    <label class="col-sm-3 text-right text-muted">Token</label>
+    <div class="col-sm-9"><%= @oauth.token %></div>
+  </div>
+
+</div>
+
