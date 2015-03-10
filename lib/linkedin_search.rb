@@ -50,10 +50,40 @@ module LinkedinSearch
     end
   end
   
-  def self.company_search(query, linkedin_oauth)
-    cache_key = "oauths/#{linkedin_oauth.id}/company_search/#{clean_string(query)}.json"
+  def self.company_search(company_name, linkedin_oauth)
+    max_results = 50
+    cache_key = "oauths/#{linkedin_oauth.id}/company_search/#{clean_string(company_name)}.json"
     
-    "count=25&start=&hq-only=true&keywords="+Encode(query)
+    cache_value = S3Cache.fetch(cache_key, S3_CACHE_BUCKET)
+    if cache_value
+      return ActiveSupport::JSON.decode(cache_value)
+    else
+      per_page = 25
+      start = 0
+      collected_profiles = []
+
+      # Loop until LinkedIn doesn't have anything to return
+      new_profiles = [true]
+      while !new_profiles.nil? && collected_profiles.length < max_results
+        new_profiles = linkedin_oauth.linkedin_access_token.search(
+        { 
+          keywords: clean_string(company_name), 
+          count: per_page, 
+          start: start, 
+          hq_only: 'true'
+        }, 
+        'company').companies.all
+        
+        unless new_profiles.nil?
+          collected_profiles = collected_profiles.concat(new_profiles)
+        end
+        start = start + per_page
+      end
+      
+      collected_profiles
+    end
+    S3Cache.write(cache_key, collected_profiles.to_json, S3_CACHE_BUCKET)
+    return collected_profiles
   end
   
   def self.company_connections(company_name, linkedin_oauth)
@@ -70,25 +100,27 @@ module LinkedinSearch
       # Loop until LinkedIn doesn't have anything to return
       new_profiles = [true]
       while !new_profiles.nil?
-        new_profiles = linkedin_oauth.linkedin_access_token.search({ 
+        new_profiles = linkedin_oauth.linkedin_access_token.search(
+        { 
           company_name: clean_string(company_name), 
           count: per_page, 
           start: start, 
           sort: 'connections',
           fields: ["people:(#{SEARCH_COLUMNS.join(',')})"]
-          }, 'people').people.all
+        },
+        'people').people.all
         
-          unless new_profiles.nil?
-            collected_profiles = collected_profiles.concat(new_profiles)
-          end
-          start = start + per_page
+        unless new_profiles.nil?
+          collected_profiles = collected_profiles.concat(new_profiles)
         end
-      
-        collected_profiles
+        start = start + per_page
       end
-      S3Cache.write(cache_key, collected_profiles.to_json, S3_CACHE_BUCKET)
-      return collected_profiles
+      
+      collected_profiles
     end
+    S3Cache.write(cache_key, collected_profiles.to_json, S3_CACHE_BUCKET)
+    return collected_profiles
+  end
   
 
 end
