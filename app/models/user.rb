@@ -24,7 +24,10 @@ class User < ActiveRecord::Base
         last_name:       omniauth_auth['info']['name'].rpartition(" ").last
       )
     end
-    existing_user.create_or_update_single_oauth!('linkedin', omniauth_auth['uid'], omniauth_auth['credentials']['token'], omniauth_auth['credentials']['secret'])
+    
+    # linkedin_client = LinkedIn::Client.new ENV['LINKEDIN_KEY'], ENV['LINKEDIN_SECRET']
+    # request_token = linkedin_client.request_token({}, :scope => LinkedinSearch::LINKEDIN_SCOPE)
+    existing_user.create_or_update_single_oauth!('linkedin', omniauth_auth['uid'], omniauth_auth['credentials']['token'], omniauth_auth['credentials']['secret'].to_s)
     existing_user
   end
   

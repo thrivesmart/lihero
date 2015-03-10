@@ -94,7 +94,7 @@ video {display: inline-block; z-index: 10; }
 	.about-us h3 {padding-top: 20px;}
 
 /* Footer */
-#footer {margin-top: 100px; padding: 60px 0; background: #333 url(img/diamonds.png) top center repeat;; color: #ccc;}
+#footer {margin-top: 100px; padding: 60px 0; background: #333 ; color: #ccc;}
 	#footer ul {list-style: none; padding-left: 0; }
 		#footer ul li {margin-left: 0;}
 

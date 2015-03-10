@@ -22,7 +22,8 @@ gem "omniauth-github"
 gem 'omniauth-linkedin-oauth2'
 
 # Interact with LI
-gem 'linkedin'
+# gem 'linkedin'
+gem 'linkedin-oauth2'
 gem 'aws-sdk'
 
 # Heroku to serve assets

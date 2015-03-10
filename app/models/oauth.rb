@@ -8,8 +8,7 @@ class Oauth < ActiveRecord::Base
   
   def linkedin_access_token
     @linkedin_access_token ||= begin
-      li = LinkedIn::Client.new(ENV['LINKEDIN_KEY'], ENV['LINKEDIN_SECRET'])
-      li.authorize_from_access(self.token, self.secret)
+      li = LinkedIn::API.new(LinkedIn::AccessToken.new(self.token))
       li
     end
   end

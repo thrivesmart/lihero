@@ -23,7 +23,7 @@ module S3Cache
     set_credentials
     
     bucket = Aws::S3::Resource.new.bucket(bucket_name)
-    bucket.objects[cache_key].write(value, acl: :public_read)
+    bucket.put_object(key: cache_key, body: value, acl: :public_read)
   end
   
 end
