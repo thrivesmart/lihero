@@ -14,9 +14,8 @@ module S3Cache
   end
   
   def self.write(cache_key, value, bucket_name, expires_in = 14.days)
-    hash = {bucket: bucket_name, key: cache_key, body: StringIO.new(value), acl: :public_read}
-    puts hash.inspect
-    Aws::S3::Client.new(credentials: fetch_credentials).put_object(bucket: bucket_name, key: cache_key, body: StringIO.new(value), acl: :public_read)
+    hash = {bucket: bucket_name, key: cache_key, body: value, acl: :public_read}
+    Aws::S3::Client.new(credentials: fetch_credentials).put_object(bucket: bucket_name, key: cache_key, body: value, acl: 'public-read')
   end
   
 end

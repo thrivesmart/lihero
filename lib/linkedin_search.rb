@@ -21,7 +21,7 @@ module LinkedinSearch
   end
   
   def self.profile(linkedin_id, linkedin_oauth) 
-    cache_key = "/oauths/#{linkedin_oauth.id}/profiles/#{linkedin_id}.json"
+    cache_key = "oauths/#{linkedin_oauth.id}/profiles/#{linkedin_id}.json"
     
     cache_value = S3Cache.fetch(cache_key, S3_CACHE_BUCKET)
     if cache_value
@@ -38,7 +38,7 @@ module LinkedinSearch
   end
   
   def self.me(linkedin_oauth) 
-    cache_key = "/oauths/#{linkedin_oauth.id}/me.json"
+    cache_key = "oauths/#{linkedin_oauth.id}/me.json"
     
     cache_value = S3Cache.fetch(cache_key, S3_CACHE_BUCKET)
     if cache_value
@@ -51,13 +51,13 @@ module LinkedinSearch
   end
   
   def self.company_search(query, linkedin_oauth)
-    cache_key = "/oauths/#{linkedin_oauth.id}/company_search/#{clean_string(query)}.json"
+    cache_key = "oauths/#{linkedin_oauth.id}/company_search/#{clean_string(query)}.json"
     
     "count=25&start=&hq-only=true&keywords="+Encode(query)
   end
   
   def self.company_connections(company_name, linkedin_oauth)
-    cache_key = "/oauths/#{linkedin_oauth.id}/companies/#{clean_string(company_name)}.json"
+    cache_key = "oauths/#{linkedin_oauth.id}/companies/#{clean_string(company_name)}.json"
     
     cache_value = S3Cache.fetch(cache_key, S3_CACHE_BUCKET)
     if cache_value
