@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     "#{self.first_name}#{self.middle_name.blank? ? '' : ' '+self.middle_name} #{self.last_name}"
   end
   
+  def default_linkedin_oauth
+    self.oauths.where(kind: 'linkedin').first
+  end
+  
   def create_or_update_single_oauth!(kind, account, token, secret)
     new_or_existing_oauth = self.oauths.where(kind: kind, account: account.downcase).first
     unless new_or_existing_oauth

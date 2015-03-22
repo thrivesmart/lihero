@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'linkedin/people'
+  get 'linkedin/companies'
+
   resources :organizations do
     resources :memberships
     resources :lists do
